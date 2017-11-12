@@ -249,6 +249,7 @@ public class ALU extends javax.swing.JFrame {
         getContentPane().add(FF2Label);
         FF2Label.setBounds(650, 150, 34, 14);
 
+        FF2Output.setEditable(false);
         FF2Output.setText("XX");
         getContentPane().add(FF2Output);
         FF2Output.setBounds(620, 190, 80, 20);
