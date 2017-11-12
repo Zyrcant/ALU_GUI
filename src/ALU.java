@@ -68,6 +68,10 @@ public class ALU extends javax.swing.JFrame {
         offLabel = new javax.swing.JLabel();
         clockLabel2 = new javax.swing.JLabel();
         clockLabel = new javax.swing.JLabel();
+        FF1Label = new javax.swing.JLabel();
+        FF1output = new javax.swing.JTextField();
+        FF2Label = new javax.swing.JLabel();
+        FF2Output = new javax.swing.JTextField();
         BackgroundImage = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -232,6 +236,23 @@ public class ALU extends javax.swing.JFrame {
         getContentPane().add(clockLabel);
         clockLabel.setBounds(650, 300, 34, 14);
 
+        FF1Label.setText("FF1");
+        getContentPane().add(FF1Label);
+        FF1Label.setBounds(300, 760, 30, 20);
+
+        FF1output.setEditable(false);
+        FF1output.setText("XX");
+        getContentPane().add(FF1output);
+        FF1output.setBounds(270, 800, 80, 20);
+
+        FF2Label.setText("FF2");
+        getContentPane().add(FF2Label);
+        FF2Label.setBounds(650, 150, 34, 14);
+
+        FF2Output.setText("XX");
+        getContentPane().add(FF2Output);
+        FF2Output.setBounds(620, 190, 80, 20);
+
         BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU temp.png"))); // NOI18N
         getContentPane().add(BackgroundImage);
         BackgroundImage.setBounds(0, 0, 1145, 1000);
@@ -293,6 +314,10 @@ public class ALU extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundImage;
+    private javax.swing.JLabel FF1Label;
+    private javax.swing.JTextField FF1output;
+    private javax.swing.JLabel FF2Label;
+    private javax.swing.JTextField FF2Output;
     private javax.swing.JLabel addLabel;
     private javax.swing.JCheckBox addSet;
     private javax.swing.JLabel andLabel;
