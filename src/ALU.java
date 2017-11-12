@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import javax.swing.text.*;
+import javax.swing.text.DocumentFilter.*;
 /**
  *
  * @author Chawp
@@ -15,6 +16,12 @@ public class ALU extends javax.swing.JFrame {
      */
     public ALU() {
         initComponents();
+        // <editor-fold defaultstate="collapsed" desc="Set Window Size">  
+        this.setSize(1140,1040);
+        this.setTitle("Dylan's Godlike ALU");
+
+        ((javax.swing.text.AbstractDocument) input.getDocument()).setDocumentFilter(new MyDocumentFilter());
+        // </editor-fold>
     }
 
     /**
@@ -47,7 +54,21 @@ public class ALU extends javax.swing.JFrame {
         inputLabel = new javax.swing.JLabel();
         outputLabel = new javax.swing.JLabel();
         goButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        addLabel = new javax.swing.JLabel();
+        subLabel = new javax.swing.JLabel();
+        onLabel = new javax.swing.JLabel();
+        andLabel = new javax.swing.JLabel();
+        orLabel = new javax.swing.JLabel();
+        xorLabel = new javax.swing.JLabel();
+        notLabel = new javax.swing.JLabel();
+        loadLabel = new javax.swing.JLabel();
+        nothingLabel = new javax.swing.JLabel();
+        multLabel = new javax.swing.JLabel();
+        resetLabel1 = new javax.swing.JLabel();
+        offLabel = new javax.swing.JLabel();
+        clockLabel2 = new javax.swing.JLabel();
+        clockLabel = new javax.swing.JLabel();
+        BackgroundImage = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -67,7 +88,7 @@ public class ALU extends javax.swing.JFrame {
         jScrollPane1.setViewportView(input);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 190, 147, 33);
+        jScrollPane1.setBounds(20, 180, 130, 30);
 
         resetSet.setText("RST");
         resetSet.setToolTipText("");
@@ -77,47 +98,47 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(resetSet);
-        resetSet.setBounds(410, 520, 60, 23);
+        resetSet.setBounds(360, 500, 60, 23);
 
         addSet.setText("ADD");
         addSet.setToolTipText("");
         getContentPane().add(addSet);
-        addSet.setBounds(410, 580, 47, 23);
+        addSet.setBounds(360, 540, 47, 23);
 
         multSet.setText("MULT");
         multSet.setToolTipText("");
         getContentPane().add(multSet);
-        multSet.setBounds(410, 550, 60, 23);
+        multSet.setBounds(360, 520, 60, 23);
 
         andSet.setText("AND");
         andSet.setToolTipText("");
         getContentPane().add(andSet);
-        andSet.setBounds(410, 640, 47, 23);
+        andSet.setBounds(360, 580, 47, 23);
 
         subSet.setText("SUB");
         subSet.setToolTipText("");
         getContentPane().add(subSet);
-        subSet.setBounds(410, 610, 50, 23);
+        subSet.setBounds(360, 560, 50, 23);
 
         orSet.setText("OR");
         orSet.setToolTipText("");
         getContentPane().add(orSet);
-        orSet.setBounds(410, 670, 41, 23);
+        orSet.setBounds(360, 600, 41, 23);
 
         xorSet.setText("XOR");
         xorSet.setToolTipText("");
         getContentPane().add(xorSet);
-        xorSet.setBounds(410, 700, 47, 23);
+        xorSet.setBounds(360, 620, 47, 23);
 
         notSet.setText("NOT");
         notSet.setToolTipText("");
         getContentPane().add(notSet);
-        notSet.setBounds(410, 730, 47, 23);
+        notSet.setBounds(360, 640, 47, 23);
 
         loadSet.setText("LOAD");
         loadSet.setToolTipText("");
         getContentPane().add(loadSet);
-        loadSet.setBounds(410, 760, 60, 23);
+        loadSet.setBounds(360, 660, 60, 23);
 
         reset2Set.setText("RST");
         reset2Set.addActionListener(new java.awt.event.ActionListener() {
@@ -126,38 +147,94 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reset2Set);
-        reset2Set.setBounds(90, 990, 60, 23);
+        reset2Set.setBounds(90, 920, 60, 23);
 
         onSet.setText("ON");
         getContentPane().add(onSet);
-        onSet.setBounds(90, 1020, 60, 23);
+        onSet.setBounds(90, 940, 60, 23);
 
         offSet.setText("OFF");
         getContentPane().add(offSet);
-        offSet.setBounds(90, 1050, 45, 23);
+        offSet.setBounds(90, 960, 45, 23);
 
         output.setEditable(false);
         output.setAutoscrolls(false);
         jScrollPane2.setViewportView(output);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(1060, 180, 137, 33);
+        jScrollPane2.setBounds(950, 160, 137, 33);
 
         inputLabel.setText("Input");
         getContentPane().add(inputLabel);
-        inputLabel.setBounds(30, 170, 26, 14);
+        inputLabel.setBounds(30, 160, 40, 14);
 
         outputLabel.setText("Output");
         getContentPane().add(outputLabel);
-        outputLabel.setBounds(1070, 160, 40, 14);
+        outputLabel.setBounds(960, 140, 40, 14);
 
         goButton.setText("I'M READY");
         getContentPane().add(goButton);
-        goButton.setBounds(40, 250, 90, 23);
+        goButton.setBounds(40, 230, 90, 23);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU temp.png"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, -470, 1530, 2030);
+        addLabel.setText("ADD");
+        getContentPane().add(addLabel);
+        addLabel.setBounds(330, 150, 70, 20);
+
+        subLabel.setText("SUB");
+        getContentPane().add(subLabel);
+        subLabel.setBounds(330, 190, 70, 20);
+
+        onLabel.setText("1");
+        getContentPane().add(onLabel);
+        onLabel.setBounds(80, 770, 30, 30);
+
+        andLabel.setText("AND");
+        getContentPane().add(andLabel);
+        andLabel.setBounds(330, 220, 70, 30);
+
+        orLabel.setText("OR");
+        getContentPane().add(orLabel);
+        orLabel.setBounds(330, 260, 70, 20);
+
+        xorLabel.setText("XOR");
+        getContentPane().add(xorLabel);
+        xorLabel.setBounds(330, 300, 70, 20);
+
+        notLabel.setText("NOT");
+        getContentPane().add(notLabel);
+        notLabel.setBounds(330, 330, 70, 30);
+
+        loadLabel.setText("LOAD");
+        getContentPane().add(loadLabel);
+        loadLabel.setBounds(330, 370, 70, 20);
+
+        nothingLabel.setText("Do Nothing");
+        getContentPane().add(nothingLabel);
+        nothingLabel.setBounds(320, 400, 90, 40);
+
+        multLabel.setText("MULT");
+        getContentPane().add(multLabel);
+        multLabel.setBounds(330, 110, 70, 30);
+
+        resetLabel1.setText("0");
+        getContentPane().add(resetLabel1);
+        resetLabel1.setBounds(340, 80, 70, 20);
+
+        offLabel.setText("0");
+        getContentPane().add(offLabel);
+        offLabel.setBounds(80, 840, 30, 20);
+
+        clockLabel2.setText("Clock");
+        getContentPane().add(clockLabel2);
+        clockLabel2.setBounds(300, 910, 34, 14);
+
+        clockLabel.setText("Clock");
+        getContentPane().add(clockLabel);
+        clockLabel.setBounds(650, 300, 34, 14);
+
+        BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU temp.png"))); // NOI18N
+        getContentPane().add(BackgroundImage);
+        BackgroundImage.setBounds(0, 0, 1145, 1000);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,27 +292,79 @@ public class ALU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundImage;
+    private javax.swing.JLabel addLabel;
     private javax.swing.JCheckBox addSet;
+    private javax.swing.JLabel andLabel;
     private javax.swing.JCheckBox andSet;
+    private javax.swing.JLabel clockLabel;
+    private javax.swing.JLabel clockLabel2;
     private javax.swing.JButton goButton;
     private javax.swing.JTextPane input;
     private javax.swing.JLabel inputLabel;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel loadLabel;
     private javax.swing.JCheckBox loadSet;
+    private javax.swing.JLabel multLabel;
     private javax.swing.JCheckBox multSet;
+    private javax.swing.JLabel notLabel;
     private javax.swing.JCheckBox notSet;
+    private javax.swing.JLabel nothingLabel;
+    private javax.swing.JLabel offLabel;
     private javax.swing.JCheckBox offSet;
+    private javax.swing.JLabel onLabel;
     private javax.swing.JCheckBox onSet;
     private javax.swing.ButtonGroup operation;
+    private javax.swing.JLabel orLabel;
     private javax.swing.JCheckBox orSet;
     private javax.swing.JTextPane output;
     private javax.swing.JLabel outputLabel;
     private javax.swing.JCheckBox reset2Set;
+    private javax.swing.JLabel resetLabel1;
     private javax.swing.JCheckBox resetSet;
+    private javax.swing.JLabel subLabel;
     private javax.swing.JCheckBox subSet;
+    private javax.swing.JLabel xorLabel;
     private javax.swing.JCheckBox xorSet;
     // End of variables declaration//GEN-END:variables
+    class MyDocumentFilter extends javax.swing.text.DocumentFilter
+    {
+        public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text,
+        AttributeSet attrs) throws BadLocationException 
+        {
+            System.out.println("replace: " + text);
+            if(text.length() == 1)
+            {
+                if(text.charAt(0) == '1' || text.charAt(0) == '0')
+                {
+                    System.out.println("IN THE IF");
+                    super.replace(fb, offset, length, text, attrs);
+                }
+                else{
+                    System.out.println("IN THE ELLSE");
+                    super.replace(fb, offset, length, "", attrs);
+                }
+            }
+            else{
+                boolean juan = true;
+                for (int i = 0; i < text.length(); i++){
+                    char c = text.charAt(i);
+                    if(c != '0' && c != '1')
+                    {
+                        juan = false;
+                        break;
+                    }
+                }
+                if(juan){
+                    System.out.println("JUAN");
+                    super.replace(fb, offset, length, text, attrs);}
+                else{
+                    System.out.println("NO JUAN");
+                    super.replace(fb, offset, length, "", attrs);
+                }
+            }
+        }
+    }
 }
