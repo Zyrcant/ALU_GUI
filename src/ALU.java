@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.Color;
 import java.util.Arrays;
 import javax.swing.text.*;
-import javax.swing.text.DocumentFilter.*;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author Chawp
@@ -18,15 +15,16 @@ public class ALU extends javax.swing.JFrame {
     private String[] mux2 = new String[10];
     private String mux1out = "";
     private String mux2out = "";
+    private int step = 0;
     /**
      * Creates new form ALU
      */
     public ALU() {
         initComponents();
-        // <editor-fold defaultstate="collapsed" desc="Set Window Size">  
+        // <editor-fold defaultstate="collapsed" desc="Initialization stuff">  
         this.setSize(1140,1040);
         this.setTitle("Dylan's Godlike ALU");
-
+        hideLabels();
         ((javax.swing.text.AbstractDocument) input.getDocument()).setDocumentFilter(new MyDocumentFilter());
         // </editor-fold>
     }
@@ -361,18 +359,31 @@ public class ALU extends javax.swing.JFrame {
         input.setText(format(in));
         
         //Order of things to do: feed values from flip flops into muxs, calculate mux values, select proper mux values, store in flip flop, output vals from mux
-        setMux1Values(FF1output.getText());
-        setMux2Values(FF2Output.getText(), input.getText());
-        mux1select();
-        mux2select();
-        FF1output.setText(mux1out);
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ALU.class.getName()).log(Level.SEVERE, null, ex);
+        if(step == 0)
+        {
+            step++;
+            setMux1Values(FF1output.getText());
+            setMux2Values(FF2Output.getText(), input.getText());
         }
-        FF2Output.setText(mux2out);
-        output.setText(mux2out);
+        else if(step == 1)
+        {
+            step++;
+            mux1select();
+            mux2select();
+        }
+        else if(step == 2)
+        {
+            step++;
+            recolorMux1();
+            FF1output.setText(mux1out);
+            FF2Output.setText(mux2out);
+            output.setText(mux2out);
+        }
+        else if (step == 3)
+        {
+            step = 0;
+            hideLabels();
+        }
     }//GEN-LAST:event_goButtonActionPerformed
     //calculates all the values to be output from mux1
     private void setMux1Values(String FF)
@@ -411,6 +422,7 @@ public class ALU extends javax.swing.JFrame {
         mux2[7] = notOutLabel     .getText();
         mux2[8] = loadOutLabel    .getText();
         mux2[9] = nothingOutLabel .getText();
+        showMux2Values();
         System.out.println(Arrays.toString(mux2));
     }
     //solves for the output of Mux 1
@@ -424,37 +436,78 @@ public class ALU extends javax.swing.JFrame {
             mux1out = mux1[0];
         System.out.println("mux1 output is: " + mux1out);
         mux1OutLabel.setText(mux1out);
+        mux1OutLabel.setVisible(true);
     }
     //solves for the output of Mux 2
     private void mux2select()
     {
-        if(mux1out.equals("1"))
-        {
-            if(multSet.isSelected())
-                mux2out = mux2[1];
-            else if(addSet.isSelected())
-                mux2out = mux2[2];
-            else if(subSet.isSelected())
-                mux2out = mux2[3];
-            else if(andSet.isSelected())
-                mux2out = mux2[4];
-            else if(orSet.isSelected())
-                mux2out = mux2[5];
-            else if(xorSet.isSelected())
-                mux2out = mux2[6];
-            else if(notSet.isSelected())
-                mux2out = mux2[7];
-            else if(loadSet.isSelected())
-                mux2out = mux2[8];
-            else
-                mux2out = mux2[9];
-        }
-        else
-            mux2out = mux2[9];
         if(resetSet.isSelected())
+        {
             mux2out = mux2[0];
+            resetOutLabel.setForeground(Color.red);
+        }
+        else{
+            if(mux1out.equals("1"))
+            {
+                if(multSet.isSelected()){
+                    mux2out = mux2[1];
+                    multOutLabel.setForeground(Color.red);
+                }
+                else if(addSet.isSelected()){
+                    mux2out = mux2[2];
+                    addOutLabel.setForeground(Color.red);
+                }
+                else if(subSet.isSelected()){
+                    mux2out = mux2[3];
+                    subOutLabel.setForeground(Color.red);
+                }
+                else if(andSet.isSelected()){
+                    mux2out = mux2[4];
+                    andOutLabel.setForeground(Color.red);
+                }
+                else if(orSet.isSelected()){
+                    mux2out = mux2[5];
+                    orOutLabel.setForeground(Color.red);
+                }
+                else if(xorSet.isSelected()){
+                    mux2out = mux2[6];
+                    xorOutLabel.setForeground(Color.red);
+                }
+                else if(notSet.isSelected()){
+                    mux2out = mux2[7];
+                    notOutLabel.setForeground(Color.red);
+                }
+                else if(loadSet.isSelected()){
+                    mux2out = mux2[8];
+                    loadOutLabel.setForeground(Color.red);
+                }
+                else{
+                    mux2out = mux2[9];
+                    nothingOutLabel.setForeground(Color.red);
+                }
+            }
+            else{
+                mux2out = mux2[9];
+                nothingOutLabel.setForeground(Color.red);
+            }
+        }
         System.out.println("mux2 output is: " + mux2out);
         mux2OutLabel.setText(mux2out);
+        mux2OutLabel.setVisible(true);
+    }
+    
+    private void showMux2Values()
+    {
+        resetOutLabel.setVisible(true);
+        multOutLabel.setVisible(true);
+        addOutLabel.setVisible(true);
+        subOutLabel.setVisible(true);
+        andOutLabel.setVisible(true);
+        orOutLabel.setVisible(true);
+        xorOutLabel.setVisible(true);
+        notOutLabel.setVisible(true);
+        loadOutLabel.setVisible(true);
+        nothingOutLabel.setVisible(true);
     }
     //multiplies two binary values and formats the result
     private String mult(String FF, String Input)
@@ -542,6 +595,38 @@ public class ALU extends javax.swing.JFrame {
         //truncates number to last 8 bits
         output = output.substring(output.length()-8, output.length());
         return output;
+    }
+    //hides all labels that will be shown later
+    private void hideLabels()
+    {
+        //mux1 input hides
+        resetOutLabel.setVisible(false);
+        multOutLabel.setVisible(false);
+        addOutLabel.setVisible(false);
+        subOutLabel.setVisible(false);
+        andOutLabel.setVisible(false);
+        orOutLabel.setVisible(false);
+        xorOutLabel.setVisible(false);
+        notOutLabel.setVisible(false);
+        loadOutLabel.setVisible(false);
+        nothingOutLabel.setVisible(false);
+        
+        //mux output hides
+        mux1OutLabel.setVisible(false);
+        mux2OutLabel.setVisible(false);
+    }
+    private void recolorMux1()
+    {
+        resetOutLabel.setForeground(Color.black);
+        multOutLabel.setForeground(Color.black);
+        addOutLabel.setForeground(Color.black);
+        subOutLabel.setForeground(Color.black);
+        andOutLabel.setForeground(Color.black);
+        orOutLabel.setForeground(Color.black);
+        xorOutLabel.setForeground(Color.black);
+        notOutLabel.setForeground(Color.black);
+        loadOutLabel.setForeground(Color.black);
+        nothingOutLabel.setForeground(Color.black);
     }
     /**
      * @param args the command line arguments
