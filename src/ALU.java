@@ -194,7 +194,7 @@ public class ALU extends javax.swing.JFrame {
         getContentPane().add(outputLabel);
         outputLabel.setBounds(940, 280, 40, 14);
 
-        goButton.setText("Clock Tick");
+        goButton.setText("step");
         goButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goButtonActionPerformed(evt);

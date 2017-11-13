@@ -240,7 +240,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="goButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Clock Tick"/>
+        <Property name="text" type="java.lang.String" value="step"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="goButtonActionPerformed"/>
