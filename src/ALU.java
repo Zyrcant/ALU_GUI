@@ -7,6 +7,8 @@ import java.util.Arrays;
 import javax.swing.text.*;
 import javax.swing.text.DocumentFilter.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Chawp
@@ -89,6 +91,7 @@ public class ALU extends javax.swing.JFrame {
         multOutLabel = new javax.swing.JLabel();
         mux1OutLabel = new javax.swing.JLabel();
         mux2OutLabel = new javax.swing.JLabel();
+        waifuLabel = new javax.swing.JLabel();
         BackgroundImage = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -274,11 +277,11 @@ public class ALU extends javax.swing.JFrame {
         FF2Output.setEditable(false);
         FF2Output.setText("XXXXXXXX");
         getContentPane().add(FF2Output);
-        FF2Output.setBounds(620, 190, 80, 20);
+        FF2Output.setBounds(620, 180, 80, 30);
 
         addOutLabel.setText("00000000");
         getContentPane().add(addOutLabel);
-        addOutLabel.setBounds(360, 150, 60, 14);
+        addOutLabel.setBounds(360, 140, 60, 14);
 
         resetOutLabel.setText("00000000");
         getContentPane().add(resetOutLabel);
@@ -290,7 +293,7 @@ public class ALU extends javax.swing.JFrame {
 
         andOutLabel.setText("00000000");
         getContentPane().add(andOutLabel);
-        andOutLabel.setBounds(360, 220, 60, 14);
+        andOutLabel.setBounds(360, 210, 60, 14);
 
         orOutLabel.setText("00000000");
         getContentPane().add(orOutLabel);
@@ -302,7 +305,7 @@ public class ALU extends javax.swing.JFrame {
 
         notOutLabel.setText("00000000");
         getContentPane().add(notOutLabel);
-        notOutLabel.setBounds(360, 330, 60, 14);
+        notOutLabel.setBounds(360, 320, 60, 14);
 
         loadOutLabel.setText("00000000");
         getContentPane().add(loadOutLabel);
@@ -314,7 +317,7 @@ public class ALU extends javax.swing.JFrame {
 
         multOutLabel.setText("00000000");
         getContentPane().add(multOutLabel);
-        multOutLabel.setBounds(360, 110, 60, 14);
+        multOutLabel.setBounds(360, 100, 60, 14);
 
         mux1OutLabel.setText("0");
         getContentPane().add(mux1OutLabel);
@@ -323,6 +326,10 @@ public class ALU extends javax.swing.JFrame {
         mux2OutLabel.setText("00000000");
         getContentPane().add(mux2OutLabel);
         mux2OutLabel.setBounds(530, 180, 60, 14);
+
+        waifuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/kuroyukihime.png"))); // NOI18N
+        getContentPane().add(waifuLabel);
+        waifuLabel.setBounds(700, 500, 320, 390);
 
         BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU.png"))); // NOI18N
         getContentPane().add(BackgroundImage);
@@ -359,6 +366,11 @@ public class ALU extends javax.swing.JFrame {
         mux1select();
         mux2select();
         FF1output.setText(mux1out);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ALU.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FF2Output.setText(mux2out);
         output.setText(mux2out);
     }//GEN-LAST:event_goButtonActionPerformed
@@ -653,6 +665,7 @@ public class ALU extends javax.swing.JFrame {
     private javax.swing.JLabel subLabel;
     private javax.swing.JLabel subOutLabel;
     private javax.swing.JCheckBox subSet;
+    private javax.swing.JLabel waifuLabel;
     private javax.swing.JLabel xorLabel;
     private javax.swing.JLabel xorOutLabel;
     private javax.swing.JCheckBox xorSet;
