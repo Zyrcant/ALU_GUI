@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import javax.imageio.ImageIO;
 import javax.swing.text.*;
 /**
  *
@@ -24,6 +28,11 @@ public class ALU extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Initialization stuff">  
         this.setSize(1140,1040);
         this.setTitle("Dylan's Godlike ALU");
+        //set image
+        BufferedImage img = null;
+        try {img = ImageIO.read(getClass().getResource("/resources/takoyakihime.png"));} catch (IOException e) {System.out.println(e);}
+        this.setIconImage(img);
+        
         hideLabels();
         ((javax.swing.text.AbstractDocument) input.getDocument()).setDocumentFilter(new MyDocumentFilter());
         // </editor-fold>
@@ -120,47 +129,47 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(resetSet);
-        resetSet.setBounds(360, 500, 60, 23);
+        resetSet.setBounds(360, 500, 60, 25);
 
         addSet.setText("ADD");
         addSet.setToolTipText("");
         getContentPane().add(addSet);
-        addSet.setBounds(360, 540, 47, 23);
+        addSet.setBounds(360, 540, 53, 25);
 
         multSet.setText("MULT");
         multSet.setToolTipText("");
         getContentPane().add(multSet);
-        multSet.setBounds(360, 520, 60, 23);
+        multSet.setBounds(360, 520, 60, 25);
 
         andSet.setText("AND");
         andSet.setToolTipText("");
         getContentPane().add(andSet);
-        andSet.setBounds(360, 580, 47, 23);
+        andSet.setBounds(360, 580, 53, 25);
 
         subSet.setText("SUB");
         subSet.setToolTipText("");
         getContentPane().add(subSet);
-        subSet.setBounds(360, 560, 50, 23);
+        subSet.setBounds(360, 560, 50, 25);
 
         orSet.setText("OR");
         orSet.setToolTipText("");
         getContentPane().add(orSet);
-        orSet.setBounds(360, 600, 41, 23);
+        orSet.setBounds(360, 600, 45, 25);
 
         xorSet.setText("XOR");
         xorSet.setToolTipText("");
         getContentPane().add(xorSet);
-        xorSet.setBounds(360, 620, 47, 23);
+        xorSet.setBounds(360, 620, 53, 25);
 
         notSet.setText("NOT");
         notSet.setToolTipText("");
         getContentPane().add(notSet);
-        notSet.setBounds(360, 640, 47, 23);
+        notSet.setBounds(360, 640, 53, 25);
 
         loadSet.setText("LOAD");
         loadSet.setToolTipText("");
         getContentPane().add(loadSet);
-        loadSet.setBounds(360, 660, 60, 23);
+        loadSet.setBounds(360, 660, 60, 25);
 
         reset2Set.setText("RST");
         reset2Set.addActionListener(new java.awt.event.ActionListener() {
@@ -169,15 +178,15 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reset2Set);
-        reset2Set.setBounds(90, 920, 60, 23);
+        reset2Set.setBounds(90, 920, 60, 25);
 
         onSet.setText("ON");
         getContentPane().add(onSet);
-        onSet.setBounds(90, 940, 60, 23);
+        onSet.setBounds(90, 940, 60, 25);
 
         offSet.setText("OFF");
         getContentPane().add(offSet);
-        offSet.setBounds(90, 960, 45, 23);
+        offSet.setBounds(90, 960, 51, 25);
 
         output.setEditable(false);
         output.setAutoscrolls(false);
@@ -188,11 +197,11 @@ public class ALU extends javax.swing.JFrame {
 
         inputLabel.setText("Input");
         getContentPane().add(inputLabel);
-        inputLabel.setBounds(30, 160, 40, 14);
+        inputLabel.setBounds(30, 160, 40, 16);
 
         outputLabel.setText("Output");
         getContentPane().add(outputLabel);
-        outputLabel.setBounds(940, 280, 40, 14);
+        outputLabel.setBounds(940, 280, 40, 16);
 
         goButton.setText("step");
         goButton.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +210,7 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(goButton);
-        goButton.setBounds(40, 230, 90, 23);
+        goButton.setBounds(40, 230, 90, 25);
 
         addLabel.setText("ADD");
         getContentPane().add(addLabel);
@@ -253,11 +262,11 @@ public class ALU extends javax.swing.JFrame {
 
         clockLabel2.setText("Clock");
         getContentPane().add(clockLabel2);
-        clockLabel2.setBounds(300, 910, 34, 14);
+        clockLabel2.setBounds(300, 910, 34, 16);
 
         clockLabel.setText("Clock");
         getContentPane().add(clockLabel);
-        clockLabel.setBounds(650, 300, 34, 14);
+        clockLabel.setBounds(650, 300, 34, 16);
 
         FF1Label.setText("FF1");
         getContentPane().add(FF1Label);
@@ -270,7 +279,7 @@ public class ALU extends javax.swing.JFrame {
 
         FF2Label.setText("FF2");
         getContentPane().add(FF2Label);
-        FF2Label.setBounds(650, 150, 34, 14);
+        FF2Label.setBounds(650, 150, 34, 16);
 
         FF2Output.setEditable(false);
         FF2Output.setText("XXXXXXXX");
@@ -279,51 +288,51 @@ public class ALU extends javax.swing.JFrame {
 
         addOutLabel.setText("00000000");
         getContentPane().add(addOutLabel);
-        addOutLabel.setBounds(360, 140, 60, 14);
+        addOutLabel.setBounds(360, 140, 60, 16);
 
         resetOutLabel.setText("00000000");
         getContentPane().add(resetOutLabel);
-        resetOutLabel.setBounds(360, 70, 60, 14);
+        resetOutLabel.setBounds(360, 70, 60, 16);
 
         subOutLabel.setText("00000000");
         getContentPane().add(subOutLabel);
-        subOutLabel.setBounds(360, 180, 60, 14);
+        subOutLabel.setBounds(360, 180, 60, 16);
 
         andOutLabel.setText("00000000");
         getContentPane().add(andOutLabel);
-        andOutLabel.setBounds(360, 210, 60, 14);
+        andOutLabel.setBounds(360, 210, 60, 16);
 
         orOutLabel.setText("00000000");
         getContentPane().add(orOutLabel);
-        orOutLabel.setBounds(360, 250, 60, 14);
+        orOutLabel.setBounds(360, 250, 60, 16);
 
         xorOutLabel.setText("00000000");
         getContentPane().add(xorOutLabel);
-        xorOutLabel.setBounds(360, 290, 60, 14);
+        xorOutLabel.setBounds(360, 290, 60, 16);
 
         notOutLabel.setText("00000000");
         getContentPane().add(notOutLabel);
-        notOutLabel.setBounds(360, 320, 60, 14);
+        notOutLabel.setBounds(360, 320, 60, 16);
 
         loadOutLabel.setText("00000000");
         getContentPane().add(loadOutLabel);
-        loadOutLabel.setBounds(360, 360, 60, 14);
+        loadOutLabel.setBounds(360, 360, 60, 16);
 
         nothingOutLabel.setText("00000000");
         getContentPane().add(nothingOutLabel);
-        nothingOutLabel.setBounds(360, 400, 60, 14);
+        nothingOutLabel.setBounds(360, 400, 60, 16);
 
         multOutLabel.setText("00000000");
         getContentPane().add(multOutLabel);
-        multOutLabel.setBounds(360, 100, 60, 14);
+        multOutLabel.setBounds(360, 100, 60, 16);
 
         mux1OutLabel.setText("0");
         getContentPane().add(mux1OutLabel);
-        mux1OutLabel.setBounds(210, 790, 40, 14);
+        mux1OutLabel.setBounds(210, 790, 40, 16);
 
         mux2OutLabel.setText("00000000");
         getContentPane().add(mux2OutLabel);
-        mux2OutLabel.setBounds(530, 180, 60, 14);
+        mux2OutLabel.setBounds(530, 180, 60, 16);
 
         waifuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/kuroyukihime.png"))); // NOI18N
         getContentPane().add(waifuLabel);
