@@ -4,10 +4,15 @@
  * and open the template in the editor.
  */
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.text.*;
 /**
@@ -99,6 +104,7 @@ public class ALU extends javax.swing.JFrame {
         mux1OutLabel = new javax.swing.JLabel();
         mux2OutLabel = new javax.swing.JLabel();
         waifuLabel = new javax.swing.JLabel();
+        gitButton = new javax.swing.JButton();
         BackgroundImage = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -338,6 +344,15 @@ public class ALU extends javax.swing.JFrame {
         getContentPane().add(waifuLabel);
         waifuLabel.setBounds(700, 500, 320, 390);
 
+        gitButton.setText("GitHub");
+        gitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gitButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gitButton);
+        gitButton.setBounds(1050, 10, 69, 25);
+
         BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU.png"))); // NOI18N
         getContentPane().add(BackgroundImage);
         BackgroundImage.setBounds(0, 0, 1145, 1000);
@@ -394,6 +409,15 @@ public class ALU extends javax.swing.JFrame {
             hideLabels();
         }
     }//GEN-LAST:event_goButtonActionPerformed
+
+    private void gitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gitButtonActionPerformed
+        try {
+            final URI uri = new URI("https://github.com/Zyrcant/ALU_GUI");
+            Desktop.getDesktop().browse(uri);
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(ALU.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_gitButtonActionPerformed
     //calculates all the values to be output from mux1
     private void setMux1Values(String FF)
     {
@@ -723,6 +747,7 @@ public class ALU extends javax.swing.JFrame {
     private javax.swing.JCheckBox andSet;
     private javax.swing.JLabel clockLabel;
     private javax.swing.JLabel clockLabel2;
+    private javax.swing.JButton gitButton;
     private javax.swing.JButton goButton;
     private javax.swing.JTextPane input;
     private javax.swing.JLabel inputLabel;
