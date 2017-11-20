@@ -126,12 +126,12 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(resetSet);
-        resetSet.setBounds(360, 440, 60, 25);
+        resetSet.setBounds(360, 490, 60, 25);
 
         operation.add(multSet);
         multSet.setText("MULT");
         getContentPane().add(multSet);
-        multSet.setBounds(360, 470, 61, 25);
+        multSet.setBounds(360, 510, 61, 25);
 
         reset2Set.setText("RST");
         reset2Set.addActionListener(new java.awt.event.ActionListener() {
@@ -303,17 +303,17 @@ public class ALU extends javax.swing.JFrame {
         operation.add(addSet);
         addSet.setText("ADD");
         getContentPane().add(addSet);
-        addSet.setBounds(360, 500, 60, 25);
+        addSet.setBounds(360, 530, 60, 25);
 
         operation.add(subSet);
         subSet.setText("SUB");
         getContentPane().add(subSet);
-        subSet.setBounds(360, 530, 60, 25);
+        subSet.setBounds(360, 550, 60, 25);
 
         operation.add(andSet);
         andSet.setText("AND");
         getContentPane().add(andSet);
-        andSet.setBounds(360, 560, 60, 25);
+        andSet.setBounds(360, 570, 60, 25);
 
         operation.add(orSet);
         orSet.setText("OR");
@@ -323,17 +323,17 @@ public class ALU extends javax.swing.JFrame {
         operation.add(xorSet);
         xorSet.setText("XOR");
         getContentPane().add(xorSet);
-        xorSet.setBounds(360, 620, 60, 25);
+        xorSet.setBounds(360, 610, 60, 25);
 
         operation.add(notSet);
         notSet.setText("NOT");
         getContentPane().add(notSet);
-        notSet.setBounds(360, 650, 60, 25);
+        notSet.setBounds(360, 630, 60, 25);
 
         operation.add(nopSet);
         nopSet.setText("NOP");
         getContentPane().add(nopSet);
-        nopSet.setBounds(360, 700, 53, 25);
+        nopSet.setBounds(360, 670, 53, 25);
 
         opCodeLabel.setText("op code:");
         getContentPane().add(opCodeLabel);
@@ -346,7 +346,7 @@ public class ALU extends javax.swing.JFrame {
         operation.add(loadSet);
         loadSet.setText("LOAD");
         getContentPane().add(loadSet);
-        loadSet.setBounds(360, 680, 59, 25);
+        loadSet.setBounds(360, 650, 59, 25);
 
         gitButton.setText("GitHub");
         gitButton.addActionListener(new java.awt.event.ActionListener() {
