@@ -47,19 +47,11 @@ public class ALU extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
         operation = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         input = new javax.swing.JTextPane();
         resetSet = new javax.swing.JCheckBox();
-        addSet = new javax.swing.JCheckBox();
-        multSet = new javax.swing.JCheckBox();
-        andSet = new javax.swing.JCheckBox();
-        subSet = new javax.swing.JCheckBox();
-        orSet = new javax.swing.JCheckBox();
-        xorSet = new javax.swing.JCheckBox();
-        notSet = new javax.swing.JCheckBox();
-        loadSet = new javax.swing.JCheckBox();
+        multSet = new javax.swing.JRadioButton();
         reset2Set = new javax.swing.JCheckBox();
         onSet = new javax.swing.JCheckBox();
         offSet = new javax.swing.JCheckBox();
@@ -99,18 +91,17 @@ public class ALU extends javax.swing.JFrame {
         mux1OutLabel = new javax.swing.JLabel();
         mux2OutLabel = new javax.swing.JLabel();
         waifuLabel = new javax.swing.JLabel();
+        addSet = new javax.swing.JRadioButton();
+        subSet = new javax.swing.JRadioButton();
+        andSet = new javax.swing.JRadioButton();
+        orSet = new javax.swing.JRadioButton();
+        xorSet = new javax.swing.JRadioButton();
+        notSet = new javax.swing.JRadioButton();
+        nopSet = new javax.swing.JRadioButton();
+        opCodeLabel = new javax.swing.JLabel();
+        opCode = new javax.swing.JLabel();
+        loadSet = new javax.swing.JRadioButton();
         BackgroundImage = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -129,47 +120,12 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(resetSet);
-        resetSet.setBounds(360, 500, 60, 25);
+        resetSet.setBounds(360, 440, 60, 25);
 
-        addSet.setText("ADD");
-        addSet.setToolTipText("");
-        getContentPane().add(addSet);
-        addSet.setBounds(360, 540, 53, 25);
-
+        operation.add(multSet);
         multSet.setText("MULT");
-        multSet.setToolTipText("");
         getContentPane().add(multSet);
-        multSet.setBounds(360, 520, 60, 25);
-
-        andSet.setText("AND");
-        andSet.setToolTipText("");
-        getContentPane().add(andSet);
-        andSet.setBounds(360, 580, 53, 25);
-
-        subSet.setText("SUB");
-        subSet.setToolTipText("");
-        getContentPane().add(subSet);
-        subSet.setBounds(360, 560, 50, 25);
-
-        orSet.setText("OR");
-        orSet.setToolTipText("");
-        getContentPane().add(orSet);
-        orSet.setBounds(360, 600, 45, 25);
-
-        xorSet.setText("XOR");
-        xorSet.setToolTipText("");
-        getContentPane().add(xorSet);
-        xorSet.setBounds(360, 620, 53, 25);
-
-        notSet.setText("NOT");
-        notSet.setToolTipText("");
-        getContentPane().add(notSet);
-        notSet.setBounds(360, 640, 53, 25);
-
-        loadSet.setText("LOAD");
-        loadSet.setToolTipText("");
-        getContentPane().add(loadSet);
-        loadSet.setBounds(360, 660, 60, 25);
+        multSet.setBounds(360, 470, 61, 25);
 
         reset2Set.setText("RST");
         reset2Set.addActionListener(new java.awt.event.ActionListener() {
@@ -338,6 +294,54 @@ public class ALU extends javax.swing.JFrame {
         getContentPane().add(waifuLabel);
         waifuLabel.setBounds(700, 500, 320, 390);
 
+        operation.add(addSet);
+        addSet.setText("ADD");
+        getContentPane().add(addSet);
+        addSet.setBounds(360, 500, 60, 25);
+
+        operation.add(subSet);
+        subSet.setText("SUB");
+        getContentPane().add(subSet);
+        subSet.setBounds(360, 530, 60, 25);
+
+        operation.add(andSet);
+        andSet.setText("AND");
+        getContentPane().add(andSet);
+        andSet.setBounds(360, 560, 60, 25);
+
+        operation.add(orSet);
+        orSet.setText("OR");
+        getContentPane().add(orSet);
+        orSet.setBounds(360, 590, 60, 25);
+
+        operation.add(xorSet);
+        xorSet.setText("XOR");
+        getContentPane().add(xorSet);
+        xorSet.setBounds(360, 620, 60, 25);
+
+        operation.add(notSet);
+        notSet.setText("NOT");
+        getContentPane().add(notSet);
+        notSet.setBounds(360, 650, 60, 25);
+
+        operation.add(nopSet);
+        nopSet.setText("NOP");
+        getContentPane().add(nopSet);
+        nopSet.setBounds(360, 700, 53, 25);
+
+        opCodeLabel.setText("op code:");
+        getContentPane().add(opCodeLabel);
+        opCodeLabel.setBounds(470, 570, 60, 16);
+
+        opCode.setText("0000");
+        getContentPane().add(opCode);
+        opCode.setBounds(480, 590, 41, 16);
+
+        operation.add(loadSet);
+        loadSet.setText("LOAD");
+        getContentPane().add(loadSet);
+        loadSet.setBounds(360, 680, 59, 25);
+
         BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU.png"))); // NOI18N
         getContentPane().add(BackgroundImage);
         BackgroundImage.setBounds(0, 0, 1145, 1000);
@@ -371,6 +375,7 @@ public class ALU extends javax.swing.JFrame {
         if(step == 0)
         {
             step++;
+            setOpCode();
             setMux1Values(FF1output.getText());
             setMux2Values(FF2Output.getText(), input.getText());
         }
@@ -490,6 +495,10 @@ public class ALU extends javax.swing.JFrame {
                     mux2out = mux2[8];
                     loadOutLabel.setForeground(Color.red);
                 }
+                else if(nopSet.isSelected()){
+                    mux2out = mux2[9];
+                    nothingOutLabel.setForeground(Color.red);
+                }
                 else{
                     mux2out = mux2[9];
                     nothingOutLabel.setForeground(Color.red);
@@ -517,6 +526,28 @@ public class ALU extends javax.swing.JFrame {
         notOutLabel.setVisible(true);
         loadOutLabel.setVisible(true);
         nothingOutLabel.setVisible(true);
+    }
+    
+    private void setOpCode()
+    {
+        if(multSet.isSelected())
+            opCode.setText("1000");
+        else if(addSet.isSelected())
+            opCode.setText("0111");
+        else if(subSet.isSelected())
+            opCode.setText("0110");
+        else if(andSet.isSelected())
+            opCode.setText("0101");
+        else if(orSet.isSelected())
+            opCode.setText("0100");
+        else if(xorSet.isSelected())
+            opCode.setText("0011");
+        else if(notSet.isSelected())
+            opCode.setText("0010");
+        else if(loadSet.isSelected())
+            opCode.setText("0001");
+        else
+            opCode.setText("0000");
     }
     //multiplies two binary values and formats the result
     private String mult(String FF, String Input)
@@ -717,39 +748,41 @@ public class ALU extends javax.swing.JFrame {
     private javax.swing.JTextField FF2Output;
     private javax.swing.JLabel addLabel;
     private javax.swing.JLabel addOutLabel;
-    private javax.swing.JCheckBox addSet;
+    private javax.swing.JRadioButton addSet;
     private javax.swing.JLabel andLabel;
     private javax.swing.JLabel andOutLabel;
-    private javax.swing.JCheckBox andSet;
+    private javax.swing.JRadioButton andSet;
     private javax.swing.JLabel clockLabel;
     private javax.swing.JLabel clockLabel2;
     private javax.swing.JButton goButton;
     private javax.swing.JTextPane input;
     private javax.swing.JLabel inputLabel;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel loadLabel;
     private javax.swing.JLabel loadOutLabel;
-    private javax.swing.JCheckBox loadSet;
+    private javax.swing.JRadioButton loadSet;
     private javax.swing.JLabel multLabel;
     private javax.swing.JLabel multOutLabel;
-    private javax.swing.JCheckBox multSet;
+    private javax.swing.JRadioButton multSet;
     private javax.swing.JLabel mux1OutLabel;
     private javax.swing.JLabel mux2OutLabel;
+    private javax.swing.JRadioButton nopSet;
     private javax.swing.JLabel notLabel;
     private javax.swing.JLabel notOutLabel;
-    private javax.swing.JCheckBox notSet;
+    private javax.swing.JRadioButton notSet;
     private javax.swing.JLabel nothingLabel;
     private javax.swing.JLabel nothingOutLabel;
     private javax.swing.JLabel offLabel;
     private javax.swing.JCheckBox offSet;
     private javax.swing.JLabel onLabel;
     private javax.swing.JCheckBox onSet;
+    private javax.swing.JLabel opCode;
+    private javax.swing.JLabel opCodeLabel;
     private javax.swing.ButtonGroup operation;
     private javax.swing.JLabel orLabel;
     private javax.swing.JLabel orOutLabel;
-    private javax.swing.JCheckBox orSet;
+    private javax.swing.JRadioButton orSet;
     private javax.swing.JTextPane output;
     private javax.swing.JLabel outputLabel;
     private javax.swing.JCheckBox reset2Set;
@@ -758,11 +791,11 @@ public class ALU extends javax.swing.JFrame {
     private javax.swing.JCheckBox resetSet;
     private javax.swing.JLabel subLabel;
     private javax.swing.JLabel subOutLabel;
-    private javax.swing.JCheckBox subSet;
+    private javax.swing.JRadioButton subSet;
     private javax.swing.JLabel waifuLabel;
     private javax.swing.JLabel xorLabel;
     private javax.swing.JLabel xorOutLabel;
-    private javax.swing.JCheckBox xorSet;
+    private javax.swing.JRadioButton xorSet;
     // End of variables declaration//GEN-END:variables
     
 }
