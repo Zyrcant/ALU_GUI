@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.image.BufferedImage;
@@ -40,6 +41,7 @@ public class ALU extends javax.swing.JFrame {
         
         hideLabels();
         ((javax.swing.text.AbstractDocument) input.getDocument()).setDocumentFilter(new MyDocumentFilter());
+        ((javax.swing.text.AbstractDocument) opCode.getDocument()).setDocumentFilter(new opCodeFilter());
         // </editor-fold>
     }
 
@@ -104,9 +106,9 @@ public class ALU extends javax.swing.JFrame {
         notSet = new javax.swing.JRadioButton();
         nopSet = new javax.swing.JRadioButton();
         opCodeLabel = new javax.swing.JLabel();
-        opCode = new javax.swing.JLabel();
         loadSet = new javax.swing.JRadioButton();
         gitButton = new javax.swing.JButton();
+        opCode = new javax.swing.JTextField();
         BackgroundImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,12 +128,17 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(resetSet);
-        resetSet.setBounds(360, 490, 60, 25);
+        resetSet.setBounds(360, 490, 60, 23);
 
         operation.add(multSet);
         multSet.setText("MULT");
+        multSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(multSet);
-        multSet.setBounds(360, 510, 61, 25);
+        multSet.setBounds(360, 510, 60, 23);
 
         reset2Set.setText("RST");
         reset2Set.addActionListener(new java.awt.event.ActionListener() {
@@ -140,15 +147,15 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reset2Set);
-        reset2Set.setBounds(90, 920, 60, 25);
+        reset2Set.setBounds(90, 920, 60, 23);
 
         onSet.setText("ON");
         getContentPane().add(onSet);
-        onSet.setBounds(90, 940, 60, 25);
+        onSet.setBounds(90, 940, 60, 23);
 
         offSet.setText("OFF");
         getContentPane().add(offSet);
-        offSet.setBounds(90, 960, 51, 25);
+        offSet.setBounds(90, 960, 45, 23);
 
         output.setEditable(false);
         output.setAutoscrolls(false);
@@ -159,11 +166,11 @@ public class ALU extends javax.swing.JFrame {
 
         inputLabel.setText("Input");
         getContentPane().add(inputLabel);
-        inputLabel.setBounds(30, 160, 40, 16);
+        inputLabel.setBounds(30, 160, 40, 14);
 
         outputLabel.setText("Output");
         getContentPane().add(outputLabel);
-        outputLabel.setBounds(940, 280, 40, 16);
+        outputLabel.setBounds(940, 280, 40, 14);
 
         goButton.setText("step");
         goButton.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +179,7 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(goButton);
-        goButton.setBounds(40, 230, 90, 25);
+        goButton.setBounds(40, 230, 90, 23);
 
         addLabel.setText("ADD");
         getContentPane().add(addLabel);
@@ -224,11 +231,11 @@ public class ALU extends javax.swing.JFrame {
 
         clockLabel2.setText("Clock");
         getContentPane().add(clockLabel2);
-        clockLabel2.setBounds(300, 910, 34, 16);
+        clockLabel2.setBounds(300, 910, 34, 14);
 
         clockLabel.setText("Clock");
         getContentPane().add(clockLabel);
-        clockLabel.setBounds(650, 300, 34, 16);
+        clockLabel.setBounds(650, 300, 34, 14);
 
         FF1Label.setText("FF1");
         getContentPane().add(FF1Label);
@@ -241,7 +248,7 @@ public class ALU extends javax.swing.JFrame {
 
         FF2Label.setText("FF2");
         getContentPane().add(FF2Label);
-        FF2Label.setBounds(650, 150, 34, 16);
+        FF2Label.setBounds(650, 150, 34, 14);
 
         FF2Output.setEditable(false);
         FF2Output.setText("XXXXXXXX");
@@ -250,51 +257,51 @@ public class ALU extends javax.swing.JFrame {
 
         addOutLabel.setText("00000000");
         getContentPane().add(addOutLabel);
-        addOutLabel.setBounds(360, 140, 60, 16);
+        addOutLabel.setBounds(360, 140, 60, 14);
 
         resetOutLabel.setText("00000000");
         getContentPane().add(resetOutLabel);
-        resetOutLabel.setBounds(360, 70, 60, 16);
+        resetOutLabel.setBounds(360, 70, 60, 14);
 
         subOutLabel.setText("00000000");
         getContentPane().add(subOutLabel);
-        subOutLabel.setBounds(360, 180, 60, 16);
+        subOutLabel.setBounds(360, 180, 60, 14);
 
         andOutLabel.setText("00000000");
         getContentPane().add(andOutLabel);
-        andOutLabel.setBounds(360, 210, 60, 16);
+        andOutLabel.setBounds(360, 210, 60, 14);
 
         orOutLabel.setText("00000000");
         getContentPane().add(orOutLabel);
-        orOutLabel.setBounds(360, 250, 60, 16);
+        orOutLabel.setBounds(360, 250, 60, 14);
 
         xorOutLabel.setText("00000000");
         getContentPane().add(xorOutLabel);
-        xorOutLabel.setBounds(360, 290, 60, 16);
+        xorOutLabel.setBounds(360, 290, 60, 14);
 
         notOutLabel.setText("00000000");
         getContentPane().add(notOutLabel);
-        notOutLabel.setBounds(360, 320, 60, 16);
+        notOutLabel.setBounds(360, 320, 60, 14);
 
         loadOutLabel.setText("00000000");
         getContentPane().add(loadOutLabel);
-        loadOutLabel.setBounds(360, 360, 60, 16);
+        loadOutLabel.setBounds(360, 360, 60, 14);
 
         nothingOutLabel.setText("00000000");
         getContentPane().add(nothingOutLabel);
-        nothingOutLabel.setBounds(360, 400, 60, 16);
+        nothingOutLabel.setBounds(360, 400, 60, 14);
 
         multOutLabel.setText("00000000");
         getContentPane().add(multOutLabel);
-        multOutLabel.setBounds(360, 100, 60, 16);
+        multOutLabel.setBounds(360, 100, 60, 14);
 
         mux1OutLabel.setText("0");
         getContentPane().add(mux1OutLabel);
-        mux1OutLabel.setBounds(210, 790, 40, 16);
+        mux1OutLabel.setBounds(210, 790, 40, 14);
 
         mux2OutLabel.setText("00000000");
         getContentPane().add(mux2OutLabel);
-        mux2OutLabel.setBounds(530, 180, 60, 16);
+        mux2OutLabel.setBounds(530, 180, 60, 14);
 
         waifuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/kuroyukihime.png"))); // NOI18N
         getContentPane().add(waifuLabel);
@@ -302,51 +309,87 @@ public class ALU extends javax.swing.JFrame {
 
         operation.add(addSet);
         addSet.setText("ADD");
+        addSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(addSet);
-        addSet.setBounds(360, 530, 60, 25);
+        addSet.setBounds(360, 530, 60, 23);
 
         operation.add(subSet);
         subSet.setText("SUB");
+        subSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(subSet);
-        subSet.setBounds(360, 550, 60, 25);
+        subSet.setBounds(360, 550, 60, 23);
 
         operation.add(andSet);
         andSet.setText("AND");
+        andSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(andSet);
-        andSet.setBounds(360, 570, 60, 25);
+        andSet.setBounds(360, 570, 60, 23);
 
         operation.add(orSet);
         orSet.setText("OR");
+        orSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(orSet);
-        orSet.setBounds(360, 590, 60, 25);
+        orSet.setBounds(360, 590, 60, 23);
 
         operation.add(xorSet);
         xorSet.setText("XOR");
+        xorSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xorSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(xorSet);
-        xorSet.setBounds(360, 610, 60, 25);
+        xorSet.setBounds(360, 610, 60, 23);
 
         operation.add(notSet);
         notSet.setText("NOT");
+        notSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(notSet);
-        notSet.setBounds(360, 630, 60, 25);
+        notSet.setBounds(360, 630, 60, 23);
 
         operation.add(nopSet);
         nopSet.setText("NOP");
+        nopSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nopSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(nopSet);
-        nopSet.setBounds(360, 670, 53, 25);
+        nopSet.setBounds(360, 670, 60, 23);
 
         opCodeLabel.setText("op code:");
         getContentPane().add(opCodeLabel);
-        opCodeLabel.setBounds(470, 570, 60, 16);
-
-        opCode.setText("0000");
-        getContentPane().add(opCode);
-        opCode.setBounds(480, 590, 41, 16);
+        opCodeLabel.setBounds(470, 570, 60, 14);
 
         operation.add(loadSet);
         loadSet.setText("LOAD");
+        loadSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadSetActionPerformed(evt);
+            }
+        });
         getContentPane().add(loadSet);
-        loadSet.setBounds(360, 650, 59, 25);
+        loadSet.setBounds(360, 650, 60, 23);
 
         gitButton.setText("GitHub");
         gitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +398,16 @@ public class ALU extends javax.swing.JFrame {
             }
         });
         getContentPane().add(gitButton);
-        gitButton.setBounds(1050, 10, 69, 25);
+        gitButton.setBounds(1035, 10, 80, 23);
+
+        opCode.setText("0000");
+        opCode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                opCodeKey(evt);
+            }
+        });
+        getContentPane().add(opCode);
+        opCode.setBounds(470, 590, 40, 30);
 
         BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ALU.png"))); // NOI18N
         getContentPane().add(BackgroundImage);
@@ -423,6 +475,60 @@ public class ALU extends javax.swing.JFrame {
             Logger.getLogger(ALU.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_gitButtonActionPerformed
+
+    private void opCodeKey(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_opCodeKey
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            System.out.println("CAUGHT!");
+            setButtons();
+        }
+    }//GEN-LAST:event_opCodeKey
+
+    private void multSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_multSetActionPerformed
+
+    private void addSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_addSetActionPerformed
+
+    private void subSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_subSetActionPerformed
+
+    private void andSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_andSetActionPerformed
+
+    private void orSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_orSetActionPerformed
+
+    private void xorSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xorSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_xorSetActionPerformed
+
+    private void notSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_notSetActionPerformed
+
+    private void loadSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_loadSetActionPerformed
+
+    private void nopSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nopSetActionPerformed
+        // TODO add your handling code here:
+        setOpCode();
+    }//GEN-LAST:event_nopSetActionPerformed
     //calculates all the values to be output from mux1
     private void setMux1Values(String FF)
     {
@@ -551,7 +657,21 @@ public class ALU extends javax.swing.JFrame {
         loadOutLabel.setVisible(true);
         nothingOutLabel.setVisible(true);
     }
-    
+    private void setButtons()
+    {
+        switch(opCode.getText())
+        {
+            case "0001": loadSet.setSelected(true); break;
+            case "0010": notSet.setSelected(true); break;
+            case "0011": xorSet.setSelected(true); break;
+            case "0100": orSet.setSelected(true); break;
+            case "0101": andSet.setSelected(true); break;
+            case "0110": subSet.setSelected(true); break;
+            case "0111": addSet.setSelected(true); break;
+            case "1000": multSet.setSelected(true); break;
+            default:     nopSet.setSelected(true);
+        }
+    }
     private void setOpCode()
     {
         if(multSet.isSelected())
@@ -764,6 +884,46 @@ public class ALU extends javax.swing.JFrame {
             }
         }
     }
+    class opCodeFilter extends javax.swing.text.DocumentFilter
+    {
+        public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException 
+        {
+            System.out.println("replace: " + text);
+            if(text.length() == 1)
+            {
+                if(fb.getDocument().getLength() + text.length() < 5)
+                {
+                    if(text.charAt(0) == '1' || text.charAt(0) == '0')
+                    {
+                        System.out.println("IN THE IF");
+                        super.replace(fb, offset, length, text, attrs);
+                    }
+                    else{
+                        System.out.println("IN THE ELLSE");
+                        super.replace(fb, offset, length, "", attrs);
+                    }
+                }
+            }
+            else{
+                boolean juan = true;
+                for (int i = 0; i < text.length(); i++){
+                    char c = text.charAt(i);
+                    if(c != '0' && c != '1')
+                    {
+                        juan = false;
+                        break;
+                    }
+                }
+                if(juan){
+                    System.out.println("JUAN");
+                    super.replace(fb, offset, length, text, attrs);}
+                else{
+                    System.out.println("NO JUAN");
+                    super.replace(fb, offset, length, "", attrs);
+                }
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundImage;
     private javax.swing.JLabel FF1Label;
@@ -802,7 +962,7 @@ public class ALU extends javax.swing.JFrame {
     private javax.swing.JCheckBox offSet;
     private javax.swing.JLabel onLabel;
     private javax.swing.JCheckBox onSet;
-    private javax.swing.JLabel opCode;
+    private javax.swing.JTextField opCode;
     private javax.swing.JLabel opCodeLabel;
     private javax.swing.ButtonGroup operation;
     private javax.swing.JLabel orLabel;
